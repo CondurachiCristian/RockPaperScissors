@@ -24,22 +24,32 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-   if (humanChoice > computerChoice) {
-      +humanScore
+   if (humanChoice == 0 && computerChoice == 2) {
+      ++humanScore
+      return "You win!"
+   } else if (humanChoice == 2 && computerChoice == 0) {
+      ++computerScore
+      return "You lose!"
+   } else if (humanChoice > computerChoice) {
+      ++humanScore
       return "You win!"
    } else if (humanChoice < computerChoice) {
-      +computerScore
+      ++computerScore
       return "You lose!"
    } else {
       return "You draw!"
    }
  };
  
- const humanSelection = getHumanChoice();
- const computerSelection = getComputerChoice();
+ let humanSelection = getHumanChoice();
+ let computerSelection = getComputerChoice();
+
+ 
  
  playRound(humanSelection, computerSelection);
 
+let score = "Score";
  console.log(humanSelection, computerSelection)
- console.log(playRound(humanSelection, computerSelection));
+ console.log(score)
  console.log(humanScore, computerScore)
+ console.log(playRound(humanSelection, computerSelection));
