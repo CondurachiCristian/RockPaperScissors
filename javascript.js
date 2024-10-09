@@ -20,10 +20,6 @@ function getHumanChoice() {
       return answer;
 }
 
-let score = "Score";
-let humanScore = 0;
-let computerScore = 0;
-
 let humanSelection = getHumanChoice();
 let computerSelection = getComputerChoice();
 
@@ -52,52 +48,106 @@ function getNames() {
    }
 };
 
-function playRound(humanChoice, computerChoice) {
-   if (humanChoice == 0 && computerChoice == 2) {
-      ++humanScore;
-      getNames();
-      console.log("You chose:");
-      console.log(humanSelection, computerSelection);
-      console.log(score);
-      console.log(humanScore, computerScore);
-      console.log("You win the round!");
-      return
-   } else if (humanChoice == 2 && computerChoice == 0) {
-      ++computerScore;
-      getNames();
-      console.log("You chose:");
-      console.log(humanSelection, computerSelection);
-      console.log(score);
-      console.log(humanScore, computerScore);
-      console.log("You lose the round!");
-      return
-   } else if (humanChoice > computerChoice) {
-      ++humanScore;
-      getNames();
-      console.log("You chose:");
-      console.log(humanSelection, computerSelection);
-      console.log(score);
-      console.log(humanScore, computerScore);
-      console.log("You win the round!");
-      return
-   } else if (humanChoice < computerChoice) {
-      ++computerScore;
-      getNames();
-      console.log("You chose:");
-      console.log(humanSelection, computerSelection);
-      console.log(score);
-      console.log(humanScore, computerScore);
-      console.log("You lose the round!");
-      return
-   } else {
-      getNames();
-      console.log("You chose:");
-      console.log(humanSelection, computerSelection);
-      console.log(score);
-      console.log(humanScore, computerScore);
-      console.log("You draw the round!");
-      return
+function getNumbers() {
+   switch (humanSelection) {
+      case "Rock" :
+         humanSelection = 0;
+         break;
+      case "Paper" :
+         humanSelection = 1;
+         break;
+      case "Scissors" :
+         humanSelection = 2;
+         break;   
+   }
+   switch (computerSelection) {
+      case "Rock" :
+         computerSelection = 0;
+         break;
+      case "Paper" :
+         computerSelection = 1;
+         break;
+      case "Scissors" :
+         computerSelection = 2;
+         break;
    }
 };
 
-playRound(humanSelection, computerSelection);
+function playGame(){
+   let score = "Score";
+   let humanScore = 0;
+   let computerScore = 0;
+   function playRound(humanChoice, computerChoice) {
+      if (humanChoice == 0 && computerChoice == 2) {
+         ++humanScore;
+         getNames();
+         console.log("You chose:");
+         console.log(humanSelection, computerSelection);
+         console.log(score);
+         console.log(humanScore, computerScore);
+         console.log("You win the round!");
+         getNumbers()
+         humanSelection = getHumanChoice();
+         computerSelection = getComputerChoice();
+         return
+      } else if (humanChoice == 2 && computerChoice == 0) {
+         ++computerScore;
+         getNames();
+         console.log("You chose:");
+         console.log(humanSelection, computerSelection);
+         console.log(score);
+         console.log(humanScore, computerScore);
+         console.log("You lose the round!");
+         getNumbers()
+         humanSelection = getHumanChoice();
+         computerSelection = getComputerChoice();
+         return
+      } else if (humanChoice > computerChoice) {
+         ++humanScore;
+         getNames();
+         console.log("You chose:");
+         console.log(humanSelection, computerSelection);
+         console.log(score);
+         console.log(humanScore, computerScore);
+         console.log("You win the round!");
+         getNumbers()
+         humanSelection = getHumanChoice();
+         computerSelection = getComputerChoice();
+         return
+      } else if (humanChoice < computerChoice) {
+         ++computerScore;
+         getNames();
+         console.log("You chose:");
+         console.log(humanSelection, computerSelection);
+         console.log(score);
+         console.log(humanScore, computerScore);
+         console.log("You lose the round!");
+         getNumbers()
+         humanSelection = getHumanChoice();
+         computerSelection = getComputerChoice();
+         return
+      } else {
+         getNames();
+         console.log("You chose:");
+         console.log(humanSelection, computerSelection);
+         console.log(score);
+         console.log(humanScore, computerScore);
+         console.log("You draw the round!");
+         getNumbers()
+         humanSelection = getHumanChoice();
+         computerSelection = getComputerChoice();
+         return
+      }
+   };
+   while (humanScore < 5 && computerScore < 5) {
+      playRound(humanSelection, computerSelection)
+   } if (humanScore > computerScore) {
+      console.log("You won the game!")
+      return
+   } else {
+      console.log("You lost the game!")
+      return
+   }
+}
+
+playGame()
